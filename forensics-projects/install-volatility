@@ -1,0 +1,82 @@
+# 🛠️ Volatility 3 Installation and Usage Guide
+
+Volatility 3 is a powerful framework for memory forensics.  
+Follow these steps to install and use it on a Linux system.
+
+---
+
+## 1️ Clone the Repository
+
+sudo git clone https://github.com/volatilityfoundation/volatility3.git
+cd volatility3
+
+
+
+## 2️ Create and Activate a Virtual Environment
+
+sudo apt install python3-venv
+python3 -m venv venv
+source venv/bin/activate
+
+¡¡Using a virtual environment is recommended to keep dependencies isolated!!
+
+## 2.1 Managing the Virtual Environment (venv)
+## To activate the virtual environment:
+source venv/bin/activate
+## To deactivate when finished:
+deactivate
+
+## Then you can safely close the terminal!
+
+
+
+## 3 Install Required Dependencies (install the necessary packages manually):
+
+pip install capstone
+pip install pefile
+pip install pycryptodome
+pip install pillow
+pip install tqdm
+pip install yara-python
+
+## Verify installation:
+
+python3 vol.py -h
+
+## Install Volatility in editable mode:
+
+pip install -e .
+
+## Install an additional required library:
+
+sudo apt install -y libyara-dev python3-dev
+
+
+
+## 4️ Testing with Example Memory Images
+
+Download example memory dumps from:
+🔗 https://memoryforensic.com/remember-me-challenge/
+
+## After extracting the .raw file, run Volatility:
+
+python3 vol.py -f ~/Downloads/remember/Remember.raw windows.info
+
+### -f ~/Downloads/... → path to the memory image file (adjust to your case)
+
+### windows.info → plugin used to analyze the memory dump
+
+
+
+## ¡Bonus! Common Plugins and Their Usage:
+
+windows.info -	Shows Windows version, build, service pack
+linux.info -	Displays Linux kernel version and distribution
+windows.pslist -	Lists running processes
+windows.psscan -	Detects even terminated processes
+windows.cmdline -	Shows command lines executed by processes
+windows.netscan	- Lists active network connections
+windows.filescan -	Scans memory for file artifacts
+windows.registry.printkey	- Displays registry keys
+
+## You are now ready to perform memory forensics with Volatility 3 ;) 
