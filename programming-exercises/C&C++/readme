@@ -1,0 +1,17 @@
+```markdown
+# 💻 C / C++ Exercises
+
+This folder contains **C and C++ programming exercises** ranging from basic syntax to data structures.
+
+## 📚 Topics Covered
+- Basic syntax (variables, loops, conditionals)
+- Functions and pointers
+- Structures and dynamic memory
+- Classes (C++) and OOP concepts
+- Algorithms and data structures
+
+## ▶️ How to Compile and Run
+For **C**:
+```bash
+gcc program.c -o program
+./program
