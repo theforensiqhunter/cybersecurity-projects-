@@ -1,0 +1,16 @@
+# 🐚 Bash Script Exercises
+
+This folder contains **Bash scripting exercises** to learn shell automation and Linux command usage.
+
+## 📚 Topics Covered
+- Basic shell commands
+- Variables and parameters
+- Conditionals and loops
+- File manipulation
+- Process management
+
+## ▶️ How to Run
+Ensure the script is executable:
+```bash
+chmod +x script1.sh
+./script1.sh
