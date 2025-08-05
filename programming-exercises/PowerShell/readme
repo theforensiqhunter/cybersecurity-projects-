@@ -1,0 +1,15 @@
+# ⚡ PowerShell Exercises
+
+This folder contains **PowerShell exercises** to practice automation and Windows scripting.
+
+## 📚 Topics Covered
+- Cmdlets and pipelines
+- Variables and loops
+- Functions and error handling
+- File system operations
+- Task automation
+
+## ▶️ How to Run
+Open PowerShell and execute:
+```powershell
+.\script1.ps1
