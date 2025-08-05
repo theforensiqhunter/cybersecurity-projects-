@@ -1,0 +1,15 @@
+# 🗄️ SQL Exercises
+
+This folder contains **SQL scripts** for practicing database queries, schema creation, and data manipulation.
+
+## 📚 Topics Covered
+- Database creation and table design
+- Basic SELECT queries
+- Filtering, sorting, and grouping
+- JOIN operations
+- Stored procedures and triggers
+
+## ▶️ How to Run
+Use any SQL client (MySQL, PostgreSQL, SQLite, etc.). For example, with MySQL:
+```sql
+SOURCE script1.sql;
