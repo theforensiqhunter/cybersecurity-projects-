@@ -1,0 +1,16 @@
+# 🐍 Python Exercises
+
+This folder contains a collection of **Python programming exercises** organized by difficulty and topic.
+
+## 📚 Topics Covered
+- Basic syntax and data types
+- Loops and conditionals
+- Functions and modules
+- File handling
+- Object-Oriented Programming (OOP)
+- Algorithmic challenges
+
+## ▶️ How to Run
+Make sure you have **Python 3.x** installed, then:
+```bash
+python exercise1.py
