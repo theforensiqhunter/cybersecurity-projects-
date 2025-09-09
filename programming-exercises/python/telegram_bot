@@ -1,0 +1,66 @@
+import time
+import subprocess
+from telegram import Bot
+from telegram.ext import Updater, CommandHandler
+from datetime import datetime
+
+# Telegram bot configuration
+TOKEN = 'YOUR_API_TOKEN'  # Replace with your bot token
+CHAT_ID = 'YOUR_CHAT_ID'  # Replace with your chat ID
+
+# Function to get missed calls using ADB
+def get_missed_calls():
+    # Execute the ADB command to get call logs
+    result = subprocess.run(["adb", "shell", "content", "query", "--uri", "content://call_log/calls", "--projection", "number,type,date"], capture_output=True, text=True)
+    
+    missed_calls = []
+    if result.returncode == 0:
+        # Split the result by lines
+        lines = result.stdout.splitlines()
+        
+        for line in lines:
+            # Look for missed calls (type 3 means missed call)
+            if "type=3" in line:
+                # Extract the phone number and the date of the call
+                number = line.split("number=")[1].split()[0]
+                date = line.split("date=")[1].split()[0]
+                # Convert the timestamp to a readable date
+                call_date = datetime.fromtimestamp(int(date) / 1000).strftime('%Y-%m-%d %H:%M:%S')
+                missed_calls.append(f"Phone: {number}, Date: {call_date}")
+    
+    return missed_calls
+
+# Function to send missed call notifications to Telegram
+def send_notification():
+    calls = get_missed_calls()
+    
+    if calls:
+        # Format the missed calls into a message
+        message = "Missed calls detected!\n\n"
+        message += "\n".join(calls)
+    else:
+        message = "No recent missed calls."
+
+    # Connect to the Telegram bot and send the message
+    bot = Bot(token=TOKEN)
+    bot.send_message(chat_id=CHAT_ID, text=message)
+
+# Main function that runs continuously
+def main():
+    # Configure the Updater and dispatcher for the bot
+    updater = Updater(TOKEN, use_context=True)
+    dp = updater.dispatcher
+
+    # /start command that the bot will respond to
+    def start(update, context):
+        update.message.reply_text("Missed call notification bot started.")
+    
+    dp.add_handler(CommandHandler("start", start))
+    
+    # Send missed call notifications every 60 seconds (you can adjust the time)
+    while True:
+        send_notification()  # Send the missed call notifications
+        time.sleep(60)  # Wait for 1 minute before checking for calls again
+
+if __name__ == '__main__':
+    main()
